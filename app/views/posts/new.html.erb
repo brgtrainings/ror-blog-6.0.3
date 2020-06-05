@@ -1,5 +1,15 @@
 <h1>Create a new post</h1>
 
+<% if @post.errors.any? %>
+  <h2>The following errors prevented the post being saved.</h2>
+
+  <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with scope: :post, url: posts_path, local: true do |f| %>
   <p>
     <%= f.label :title %>
