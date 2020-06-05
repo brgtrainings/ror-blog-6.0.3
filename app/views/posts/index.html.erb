@@ -1,0 +1,23 @@
+<h1>All posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.description %></td>
+      <td>Show</td>
+      <td>Edit</td>
+      <td>Delete</td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
