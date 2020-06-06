@@ -6,3 +6,7 @@
 <p>
   <strong>Description:</strong> <%= @post.description %>
 </p>
+
+<%= link_to  "Edit", edit_post_path(@post) %> |
+<%= link_to  "Delete", post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to  "Back to posts list", posts_path %>
