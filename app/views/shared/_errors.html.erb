@@ -1,11 +1,15 @@
-<div class="container mt-4">
-  <% flash.each do |name, msg| %>
+<% if @post.errors.any? %>
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <%= msg %>
+    <h2>The following errors prevented the post being saved.</h2>
+
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
 
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <% end %>
-</div>
+<% end %>
