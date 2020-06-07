@@ -1,12 +1,24 @@
-<h1>Showing post detail</h1>
+<h1 class="text-center mt-4"><%= @post.title %></h1>
 
-<p>
-  <strong>Title:</strong> <%= @post.title %>
-</p>
-<p>
-  <strong>Description:</strong> <%= @post.description %>
-</p>
-
-<%= link_to  "Edit", edit_post_path(@post) %> |
-<%= link_to  "Delete", post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to  "Back to posts list", posts_path %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card text-center shadow bg-white rounded">
+        <div class="card-header font-italic">
+          By BRG
+        </div>
+        <div class="card-body">
+          <div class="card-text text-left">
+            <%= simple_format(@post.description) %>
+          </div>
+          <%= link_to  "Edit", edit_post_path(@post), class: 'btn btn-info ml-1' %>
+          <%= link_to  "Delete", post_path(@post), class: 'btn btn-danger ml-1', method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+        <div class="card-footer text-muted">
+          Updated at <%= time_ago_in_words(@post.updated_at) %> ago,
+          created at <%= time_ago_in_words(@post.created_at) %> ago
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
