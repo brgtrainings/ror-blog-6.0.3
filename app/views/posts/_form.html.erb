@@ -1,4 +1,5 @@
-<% if @post.errors.any? %>
+<div class="container">
+  <% if @post.errors.any? %>
   <h2>The following errors prevented the post being saved.</h2>
 
   <ul>
@@ -6,18 +7,30 @@
     <li><%= msg %></li>
     <% end %>
   </ul>
-<% end %>
+  <% end %>
 
-<%= form_with model: @post, local: true do |f| %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <%= form_with model: @post, class: 'shadow bg-light rounded p-3', local: true do |f| %>
+      <div class="form-group row">
+        <%= f.label :title, class: 'col-2 col-form-label' %>
+        <div class="col-md-10">
+          <%= f.text_field :title, autofocus: true, class: 'form-control shadow-sm rounded', placeholder: 'Post title' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :description, class: 'col-2 col-form-label' %>
+        <div class="col-md-10">
+          <%= f.text_area :description, rows: 10, class: 'form-control shadow-sm rounded', placeholder: 'Post description' %>
+        </div>
+      </div>
 
-  <p>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </p>
+      <div class="form-group row justify-content-center mb-0">
+        <%= f.submit class: 'btn btn-secondary btn-lg' %>
+      </div>
+      <% end %>
+    </div>
 
-  <%= f.submit %>
-<% end %>
+    <%= link_to  "Back to posts list", posts_path, class: 'btn btn-outline-dark mt-5' %>
+  </div>
+</div>
