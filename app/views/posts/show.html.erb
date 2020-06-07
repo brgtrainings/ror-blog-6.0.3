@@ -5,7 +5,7 @@
     <div class="col-lg-6 col-md-8">
       <div class="card text-center shadow bg-white rounded">
         <div class="card-header font-italic">
-          By BRG
+          By <%= @post.user.username if @post.user %>
         </div>
         <div class="card-body">
           <div class="card-text text-left">
