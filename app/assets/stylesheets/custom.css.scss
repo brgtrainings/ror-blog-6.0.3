@@ -1,6 +1,23 @@
 @import "bootstrap/dist/css/bootstrap";
 
-.navbar {
-  background-color: #FDF6EA !important;
+html, body {
+  height: 100%;
 }
 
+.text-white-80 {
+  color: rgba(255, 255, 255, .8) !important;
+}
+
+.jumbotron {
+  background-image: asset_url("bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+#sticky-footer {
+  flex-shrink: none;
+}
