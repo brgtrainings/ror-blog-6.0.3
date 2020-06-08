@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_user, only: [:edit, :update]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
@@ -32,12 +32,19 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "#{@user.username} successfully updated."
+      flash[:notice] = "#{@user.username} updated successfully."
       redirect_to @user
     else
       flash[:alert] = 'Failed to edit user.'
       render 'edit'
     end
+  end
+
+  def destroy
+    @user.delete
+    session[:user_id] = nil
+    flash[:notice] = "#{@user.username} deleted successfully."
+    redirect_to root_path
   end
 
   private
