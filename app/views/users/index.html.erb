@@ -1,29 +1,37 @@
 <h1 class="text-center mt-4">All Bloggers</h1>
 
+<div class="flickr_pagination">
+  <%= will_paginate @posts, container: false %>
+</div>
+
 <div class="container mb-5">
   <% @users.each do |user| %>
-    <div class="row justify-content-md-center mt-4">
-      <div class="col-lg-7 col-md-8">
-        <div class="card text-center shadow bg-white rounded">
-          <div class="card-header font-italic">
-            <%= link_to user.username, user %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">
-              <%= link_to gravatar_for(user, size: 150), user %>
-            </h5>
-            <p class="card-text">
-              <%= pluralize(user.posts.count, "post") %>
-            </p>
-            <%= link_to  "View Profile", user, class: 'btn btn-success' %>
-            <%= link_to  "Edit Profile", edit_user_path(user), class: 'btn btn-info ml-1' %>
-          </div>
-          <div class="card-footer text-muted">
-            Joined at <%= time_ago_in_words(user.created_at) %> ago
-          </div>
+  <div class="row justify-content-md-center mt-4">
+    <div class="col-lg-7 col-md-8">
+      <div class="card text-center shadow bg-white rounded">
+        <div class="card-header font-italic">
+          <%= link_to user.username, user %>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= link_to gravatar_for(user, size: 150), user %>
+          </h5>
+          <p class="card-text">
+            <%= pluralize(user.posts.count, "post") %>
+          </p>
+          <%= link_to  "View Profile", user, class: 'btn btn-success' %>
+          <%= link_to  "Edit Profile", edit_user_path(user), class: 'btn btn-info ml-1' %>
+        </div>
+        <div class="card-footer text-muted">
+          Joined at <%= time_ago_in_words(user.created_at) %> ago
         </div>
       </div>
     </div>
+  </div>
 
   <% end %>
+</div>
+
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @posts, container: false %>
 </div>

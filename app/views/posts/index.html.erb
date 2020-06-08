@@ -1,7 +1,15 @@
 <h1 class="text-center mt-4">All posts</h1>
 
+<div class="flickr_pagination">
+  <%= will_paginate @posts, container: false %>
+</div>
+
 <div class="container mb-5">
   <% @posts.each do |post| %>
-    <%= render "posts", post: post %>
+  <%= render "posts", post: post %>
   <% end %>
+</div>
+
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @posts, container: false %>
 </div>
