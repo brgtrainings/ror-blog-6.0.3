@@ -11,19 +11,28 @@
             <%= link_to  "Bloggers", users_path, class: 'nav-link' %>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="postsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Posts
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="postsDropdown">
               <% if logged_in? %>
-                <%= link_to  "Crete Post", new_post_path, class: 'dropdown-item' %>
+              <%= link_to  "Crete Post", new_post_path, class: 'dropdown-item' %>
               <% end %>
               <%= link_to  "View Posts", posts_path, class: 'dropdown-item' %>
             </div>
           </li>
           <% if logged_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.username %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="userDropdown">
+                <%= link_to  "View user", current_user, class: 'dropdown-item' %>
+                <%= link_to  "Edit user", edit_user_path(current_user), class: 'dropdown-item' %>
+              </div>
+            </li>
             <li class="nav-item">
-              <%= link_to current_user.username, user_path(current_user), class: 'nav-link' %>
+
             </li>
             <li class="nav-item">
               <%= link_to "Log out", logout_path, class: 'nav-link', method: :delete %>
@@ -32,9 +41,9 @@
             <li class="nav-item">
               <%= link_to "Sign up", signup_path, class: 'nav-link' %>
             </li>
-          <li class="nav-item">
-            <%= link_to "Log in", login_path, class: 'nav-link' %>
-          </li>
+            <li class="nav-item">
+              <%= link_to "Log in", login_path, class: 'nav-link' %>
+            </li>
           <% end %>
         </ul>
         <form class="form-inline my-2 my-lg-0">
