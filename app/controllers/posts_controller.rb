@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.paginate(page: params[:page], per_page: 5)
@@ -57,5 +59,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :description)
+  end
+
+  def require_same_user
+    if current_user != @post.user
+      flash[:alert] = "You can only edit or delete your own post."
+      redirect_to @post
+    end
   end
 end
