@@ -3,7 +3,7 @@
     <div class="card text-center shadow bg-white rounded">
       <div class="card-header font-italic">
         <% if post.user %>
-          By <%= link_to post.user.username, user_path(post.user) %>
+        By <%= link_to post.user.username, user_path(post.user) %>
         <% end %>
       </div>
       <div class="card-body">
@@ -14,8 +14,10 @@
           <%= truncate(post.description, length: 100) %>
         </p>
         <%= link_to  "View", post_path(post), class: 'btn btn-success' %>
-        <%= link_to  "Edit", edit_post_path(post), class: 'btn btn-info ml-1' %>
-        <%= link_to  "Delete", post_path(post), class: 'btn btn-danger ml-1', method: :delete, data: { confirm: "Are you sure?" } %>
+        <% if logged_in? && post.user == current_user %>
+          <%= link_to  "Edit", edit_post_path(post), class: 'btn btn-info ml-1' %>
+          <%= link_to  "Delete", post_path(post), class: 'btn btn-danger ml-1', method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
       </div>
       <div class="card-footer text-muted">
         Updated at <%= time_ago_in_words(post.updated_at) %> ago,

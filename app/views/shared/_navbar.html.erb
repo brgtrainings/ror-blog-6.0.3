@@ -15,7 +15,9 @@
               Posts
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to  "Crete Post", new_post_path, class: 'dropdown-item' %>
+              <% if logged_in? %>
+                <%= link_to  "Crete Post", new_post_path, class: 'dropdown-item' %>
+              <% end %>
               <%= link_to  "View Posts", posts_path, class: 'dropdown-item' %>
             </div>
           </li>
