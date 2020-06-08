@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
     if @user.update(user_params)
       flash[:notice] = "#{@user.username} successfully updated."
-      redirect_to posts_path
+      redirect_to @user
     else
       flash[:alert] = 'Failed to edit user.'
       render 'edit'

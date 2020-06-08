@@ -2,7 +2,9 @@
   <div class="col-lg-7 col-md-8">
     <div class="card text-center shadow bg-white rounded">
       <div class="card-header font-italic">
-        By <%= post.user.username if post.user %>
+        <% if post.user %>
+          By <%= link_to post.user.username, user_path(post.user) %>
+        <% end %>
       </div>
       <div class="card-body">
         <h5 class="card-title">
