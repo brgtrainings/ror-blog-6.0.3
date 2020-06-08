@@ -14,7 +14,7 @@
           <%= truncate(post.description, length: 100) %>
         </p>
         <%= link_to  "View", post_path(post), class: 'btn btn-success' %>
-        <% if logged_in? && post.user == current_user %>
+        <% if logged_in? && (post.user == current_user || current_user.admin?) %>
           <%= link_to  "Edit", edit_post_path(post), class: 'btn btn-info ml-1' %>
           <%= link_to  "Delete", post_path(post), class: 'btn btn-danger ml-1', method: :delete, data: { confirm: "Are you sure?" } %>
         <% end %>

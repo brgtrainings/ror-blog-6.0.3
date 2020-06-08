@@ -55,6 +55,10 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+    if @post.nil?
+      flash[:notice] = "Failed to find post."
+      redirect_to posts_path
+    end
   end
 
   def post_params
@@ -62,7 +66,7 @@ class PostsController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @post.user
+    if current_user != @post.user && !current_user.admin?
       flash[:alert] = "You can only edit or delete your own post."
       redirect_to @post
     end
