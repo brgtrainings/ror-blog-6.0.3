@@ -3,7 +3,13 @@
     <div class="card text-center shadow bg-white rounded">
       <div class="card-header font-italic">
         <% if post.user %>
-        By <%= link_to post.user.username, user_path(post.user) %>
+          By <%= link_to post.user.username, user_path(post.user) %>
+
+          <% if post.categories.any? %>
+            <div class="mt-2">
+              <div class="mt-2"><%= render post.categories %></div>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <div class="card-body">
@@ -15,8 +21,8 @@
         </p>
         <%= link_to  "View", post_path(post), class: 'btn btn-success' %>
         <% if logged_in? && (post.user == current_user || current_user.admin?) %>
-          <%= link_to  "Edit", edit_post_path(post), class: 'btn btn-info ml-1' %>
-          <%= link_to  "Delete", post_path(post), class: 'btn btn-danger ml-1', method: :delete, data: { confirm: "Are you sure?" } %>
+        <%= link_to  "Edit", edit_post_path(post), class: 'btn btn-info ml-1' %>
+        <%= link_to  "Delete", post_path(post), class: 'btn btn-danger ml-1', method: :delete, data: { confirm: "Are you sure?" } %>
         <% end %>
       </div>
       <div class="card-footer text-muted">
