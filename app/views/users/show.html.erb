@@ -15,11 +15,7 @@
     <%= will_paginate @posts, container: false %>
   </div>
 
-  <div class="container mb-5">
-    <% @posts.each do |post| %>
-    <%= render "posts/posts", post: post %>
-    <% end %>
-  </div>
+  <%= render "posts/posts" %>
 
   <div class="flickr_pagination mb-5">
     <%= will_paginate @posts, container: false %>
