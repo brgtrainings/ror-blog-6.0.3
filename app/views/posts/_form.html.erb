@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <%= render 'shared/errors', obj: @post %>
 
   <div class="row justify-content-center">
@@ -14,6 +14,12 @@
         <%= f.label :description, class: 'col-2 col-form-label' %>
         <div class="col-md-10">
           <%= f.text_area :description, rows: 10, class: 'form-control shadow-sm rounded', placeholder: 'Post description' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :category, class: 'col-2 col-form-label' %>
+        <div class="col-md-10">
+          <%= f.collection_select(:category_ids, Category.all, :id, :name, { prompt: 'Select one or more category', include_hidden: false }, { multiple: true, class: 'custom-select shadow-sm rounded' }) %>
         </div>
       </div>
 
